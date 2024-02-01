@@ -83,25 +83,33 @@ public class SpellChecker {
     {
 		String similar = ""; 
 		int min = threshold;
-		boolean isfind = false; 
+		String similar2 = " "; 
 		for (int i =0; i < dictionary.length ; i ++)
-		{    
-			int distance = levenshtein(dictionary[i], word);
-			if (distance <= threshold && distance < min)
+		{
+			if (levenshtein(dictionary[i], word) <= threshold)
 			{   
-                
+                similar2 = dictionary[i]; 
+                if (levenshtein(similar2, word) < min)
+				{
 					similar = dictionary[i]; 
-					min = distance;
-					isfind = true;
-				
+					min = levenshtein(dictionary[i], word);
+				}
 			}
 		}
-		if (!isfind)
+		if ( "".equals(similar2))
 		{
-			return word; 
+			return word;
 		}
-        
-		return similar; 
+		if ("".equals(similar))
+		{
+           return similar2; 
+		}
+		else 
+		{
+			return similar; 
+		}
+
+		
 	}
 
 }
