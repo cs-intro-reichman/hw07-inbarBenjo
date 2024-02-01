@@ -83,24 +83,24 @@ public class SpellChecker {
     {
 		String similar = ""; 
 		int min = threshold;
-		String similar2 = " "; 
+		String similar2 = ""; 
 		for (int i =0; i < dictionary.length ; i ++)
 		{
 			if (levenshtein(dictionary[i], word) <= threshold)
 			{   
                 similar2 = dictionary[i]; 
-                if (levenshtein(similar2, word) < min)
+                if (levenshtein(dictionary[i], word) < min)
 				{
 					similar = dictionary[i]; 
 					min = levenshtein(dictionary[i], word);
 				}
 			}
 		}
-		if ( "".equals(similar2))
+		if (similar2 == "")
 		{
 			return word;
 		}
-		if ("".equals(similar))
+		if (similar == "")
 		{
            return similar2; 
 		}
