@@ -42,6 +42,9 @@ public class SpellChecker {
 			return word1.length();
 		}
 
+		word1 = word1.toLowerCase(); 
+		word2 = word2.toLowerCase();
+
 		if ( word1.length() == 0 )
 		{
 			return word2.length(); 
@@ -80,33 +83,25 @@ public class SpellChecker {
     {
 		String similar = ""; 
 		int min = threshold;
-		String similar2 = " "; 
+		boolean isfind = false; 
 		for (int i =0; i < dictionary.length ; i ++)
-		{
-			if (levenshtein(dictionary[i], word) <= threshold)
+		{    
+			int distance = levenshtein(dictionary[i], word);
+			if (distance <= threshold && distance < min)
 			{   
-                similar2 = dictionary[i]; 
-                if (levenshtein(similar2, word) < min)
-				{
+                
 					similar = dictionary[i]; 
-					min = levenshtein(dictionary[i], word);
-				}
+					min = distance;
+					isfind = true;
+				
 			}
 		}
-		if ( "".equals(similar2))
+		if (!isfind)
 		{
-			return word;
+			return word; 
 		}
-		if ("".equals(similar))
-		{
-           return similar2; 
-		}
-		else 
-		{
-			return similar; 
-		}
-
-		
+        
+		return similar; 
 	}
 
 }
