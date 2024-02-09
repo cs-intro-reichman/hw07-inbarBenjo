@@ -28,13 +28,15 @@ public class SpellChecker {
 			strNew = strNew + str.charAt(i) ; 
 		}
          return strNew ; 
+		// You could just return s.substring(1)
 	}
 
 	public static int levenshtein(String word1, String word2) 
 	{   
         if ( word1 == null)
 		{
-           return (word2 != null) ? word2.length() : 0 ; 
+			//NICE!!
+          	 	return (word2 != null) ? word2.length() : 0 ; 
 		}
 
 		if (word2 == null)
